@@ -1,4 +1,4 @@
-[![Generic badge](https://img.shields.io/badge/contributors-3-<COLOR>.svg)](https://github.com/elnemerahmed/UCASecurity/graphs/contributors)
+[![Generic badge](https://img.shields.io/badge/contributors-2-<COLOR>.svg)](https://github.com/elnemerahmed/dopmam-frontend/graphs/contributors)
 
 
 <details open="open">
