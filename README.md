@@ -42,7 +42,7 @@
 
 ### Installation
 
-1. Clone this repository ```https://github.com/elnemerahmed/UCASecurity```
+1. Clone this repository ```https://github.com/elnemerahmed/dopmam-frontend```
 2. Enter the cloned folder
 3. Start new termenal
 4. create ```.env``` file by typing ```touch .env```
