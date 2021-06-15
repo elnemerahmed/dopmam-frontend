@@ -30,6 +30,8 @@
 ### Built With
 * [react](https://reactjs.org/)
 * [redux](https://redux.js.org/)
+* [Ant Design](https://ant.design/)
+* [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 * [react-redux-dom](https://react-redux.js.org/)
 * [jwt-decode](https://www.npmjs.com/package/jwt-decode)
 * [axios](https://github.com/axios/axios)
