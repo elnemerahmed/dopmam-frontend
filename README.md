@@ -1,4 +1,4 @@
-[![Generic badge](https://img.shields.io/badge/contributors-2-<COLOR>.svg)](https://github.com/elnemerahmed/dopmam-frontend/graphs/contributors)
+[![Generic badge](https://img.shields.io/badge/contributors-1-<COLOR>.svg)](https://github.com/elnemerahmed/dopmam-frontend/graphs/contributors)
 
 
 <details open="open">
@@ -73,6 +73,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 1. Ahmed El Nemer - ahmedelnemer02@gmail.com
-2. Waleed Mortaja - waleedmortaja@protonmail.com
 
 Project Link: [https://github.com/elnemerahmed/dopmam-frontend](https://github.com/elnemerahmed/dopmam-frontend)
