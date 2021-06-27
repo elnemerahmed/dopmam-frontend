@@ -36,7 +36,7 @@ ReactDOM.render(
         <PersistGate loading="null" persistor={persistStore(store)}>
             <Router>
                 <Switch>
-                    <Route exact path='/' component={Home} />
+                    <PrivateRoute exact path='/' component={Home} />
                     <Route exact path='/login' component={Login} />
                     <DoctorRoute exact path="/user/reports/new" component={IssueReport} />
                     <HospitalRoute exact path="/user/reports" component={UserReports} />

@@ -108,7 +108,7 @@ const Report = ({ jwt, history,  }) => {
                             name="nationalId"
                             rules={[{ required: true, message: 'Please enter the National Id!' }]}
                             >
-                            <Input placeholder="eg. 123456789" type="number" value={patientId} onChange={(e) => setPatientId(e.target.value)} />
+                            <Input placeholder="eg. 123456789" type="number" min="1" value={patientId} onChange={(e) => setPatientId(e.target.value)} />
                         </Form.Item>
                     </div>
                     <div className="col-md-6">
@@ -176,7 +176,7 @@ const Report = ({ jwt, history,  }) => {
                                 name="insuranceDueDate"
                                 rules={[{ required: true, message: 'Insurance Expiration Date is required!' }]}
                             >
-                            <Input type="date" disabled={!newPatient} />
+                            <Input type="date" disabled={!newPatient}  min={moment().format('YYYY-MM-DD')} />
                             </Form.Item>
                         }
                         {
@@ -219,7 +219,7 @@ const Report = ({ jwt, history,  }) => {
                                 name="dateOfBirth"
                                 rules={[{ required: true, message: 'Gender is required!' }]}
                             >
-                                <Input  type="date" disabled={!newPatient} />
+                                <Input  type="date" disabled={!newPatient} max={moment().format('YYYY-MM-DD')} />
                             </Form.Item>
                         }
                         {
@@ -251,7 +251,7 @@ const Report = ({ jwt, history,  }) => {
                             name="summary"
                             rules={[{ required: true, message: 'Summary is required!' }]}
                         >
-                            <TextArea cols="4" disabled={!validPatient}/>
+                            <TextArea maxLength="500" cols="4" disabled={!validPatient}/>
                         </Form.Item>
                     </div>
                     <div className="col-12">
@@ -260,7 +260,7 @@ const Report = ({ jwt, history,  }) => {
                             name="diagnosis"
                             rules={[{ required: true, message: 'Diagnosis is required!' }]}
                         >
-                            <TextArea cols="4" disabled={!validPatient}/>
+                            <TextArea maxLength="500" cols="4" disabled={!validPatient}/>
                         </Form.Item>
                     </div>
                     <div className="col-12">
@@ -269,7 +269,7 @@ const Report = ({ jwt, history,  }) => {
                             name="procedure"
                             rules={[{ required: true, message: 'Procedure is required!' }]}
                         >
-                            <TextArea cols="4" disabled={!validPatient}/>
+                            <TextArea maxLength="500" cols="4" disabled={!validPatient}/>
                         </Form.Item>
                     </div>
                 </div>

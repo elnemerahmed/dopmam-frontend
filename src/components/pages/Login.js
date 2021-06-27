@@ -12,9 +12,14 @@ const LoginForm = (props) => {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
 
-    const onLoginFormSubmit = ({name, organization}) => {
+    const onLoginFormSubmit = ({email, password}) => {
         setLoading(true);
-        login(name, organization).then((response) => {
+        const name = email.split('@')[0];
+        const organization = email.split('@')[1].split('.')[0];
+        console.log(name);
+        console.log(organization);
+
+        login(name, organization, password).then((response) => {
             const token = response.data.token;
             const user = jwt(token);
             props.insertUserInfo(token, user);
@@ -33,23 +38,18 @@ const LoginForm = (props) => {
                 onFinish={onLoginFormSubmit}
             >
                 <Form.Item 
-                    label="Username:"
-                    name="name"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    label="Email:"
+                    name="email"
+                    rules={[{ required: true, message: 'Please input your Email!' }]}
                 >
-                    <Input />
+                    <Input type="email" />
                 </Form.Item>
                 <Form.Item 
-                    label="Organization:"
-                    name="organization"
-                    rules={[{ required: true, message: 'Please Select an Orgranization!' }]}
+                    label="Password:"
+                    name="password"
+                    rules={[{ required: true, message: 'Password is required' }]}
                 >
-                    <Select className="w-100" placeholder="Please Select an Orgranization!">
-                        <Option value="naser">Naser Hospital</Option>
-                        <Option value="shifa">Shifa Hospital</Option>
-                        <Option value="rantisi">Rantisi Hospital</Option>
-                        <Option value="dopmam">Dopmam</Option>
-                    </Select>
+                    <Input type="password" min="8" />
                 </Form.Item>
                 <Form.Item className="m-0">
                     <Button type="primary" htmlType="submit" loading={loading}>Login</Button>

@@ -165,7 +165,7 @@ const ApproveDopmamFinancialLead = ({id, jwt, channel, updateReport, setUpdateRe
                         name="coverage"
                         rules={[{ required: true, message: 'Please input the Coverage!' }]}
                     >
-                        <Input type="number" />
+                        <Input type="number" min="1" max="99999999" />
                     </Form.Item>
                 </div>
                 <div className="col-12">
@@ -357,61 +357,93 @@ const ReportHistory = ({ organization, channel, report, drawerOpened, setDrawerO
     };
 
     const updateApprovalList = () => {
-        let clone = [];
+        let clone = [
+            {
+                title: 'Doctor',
+                description: 'Pending'
+            },
+            {
+                title: 'Head Department',
+                description: 'Pending'
+            },
+            {
+                title: 'Hospital Manager',
+                description: 'Pending'
+            },
+            {
+                title: 'Dopmam Medical Lead',
+                description: 'Pending'
+            },
+            {
+                title: 'Dopmam Medical',
+                description: 'Pending'
+            },
+            {
+                title: 'Dopmam Financial Lead',
+                description: 'Pending'
+            },
+            {
+                title: 'Dopmam Financial',
+                description: 'Pending'
+            }
+        ];
 
         if(report.doctorSignature) {
-            clone.push({
+            clone[0] = {
                 title: 'Doctor',
                 description: report.doctorSignature
-            });
+            }
         };
 
         if(report.headOfDepartmentSignature) {
-            clone.push({
+            clone[1] = {
                 title: 'Head Department',
                 description: report.headOfDepartmentSignature
-            });
+            }
         };
 
         if(report.hospitalManagerSignature) {
-            clone.push({
+            clone[2] = {
                 title: 'Hospital Manager',
                 description: report.hospitalManagerSignature
-            });
+            }
         };
 
         if(report.medicalCommitteeSignatures && report.medicalCommitteeSignatures.length > 0) {
-            clone.push({
+            clone[3] = {
                 title: 'Dopmam Medical Lead',
                 description: report.medicalCommitteeSignatures[0]
-            });
+            };
 
             if(report.medicalCommitteeSignatures.length > 1) {
                 const dopmamMedicalMembers = report.medicalCommitteeSignatures.slice(1);
-                clone.push({
+                clone[4] = {
                     title: 'Dopmam Medical',
                     description: dopmamMedicalMembers.join(', ')
-                });
+                };
             }
         };
 
         if(report.financialCommitteeSignatures && report.financialCommitteeSignatures.length > 0) {
-            clone.push({
+            clone[5] = {
                 title: 'Dopmam Financial Lead',
                 description: report.financialCommitteeSignatures[0]
-            });
+            }
 
             if(report.financialCommitteeSignatures.length > 1) {
                 const dopmamFinancialMembers = report.financialCommitteeSignatures.slice(1);
-                clone.push({
+                clone[6] = {
                     title: 'Dopmam Financial',
                     description: dopmamFinancialMembers.join(', ')
-                });
+                };
             }
         };
 
         if(report.rejected) {
-            clone[clone.length - 1].status = 'rejected';
+            const filtered = clone.filter((e) => e.description !== 'Pending');
+            const rejectedByKey = filtered[filtered.length - 1].title;
+            clone.filter((e) => e.title === rejectedByKey).forEach((c) => c.description = `${c.description} (Rejected)`);
+            clone.filter((e) => e.description === 'Pending').forEach((c) => c.description = `Rejected by: ${rejectedByKey}`);
         }
 
         setApprovalList(clone);
