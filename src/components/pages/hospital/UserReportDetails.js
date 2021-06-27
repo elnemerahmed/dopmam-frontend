@@ -277,7 +277,7 @@ const ReportHistory = ({ user, report, drawerOpened, setDrawerOpened }) => {
         };
 
         if(report.medicalCommitteeSignatures && report.medicalCommitteeSignatures.length > 0) {
-            clone.push[3] = {
+            clone[3] = {
                 title: 'Dopmam Medical Lead',
                 description: report.medicalCommitteeSignatures[0]
             };
