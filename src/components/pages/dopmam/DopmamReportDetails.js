@@ -119,7 +119,7 @@ const ApproveDopmamMedicalLead = ({id, jwt, channel, updateReport, setUpdateRepo
                         name="date"
                         rules={[{ required: true, message: 'Please input the Date!' }]}
                     >
-                        <Input type="date"/>
+                        <Input type="date" min={moment().format('YYYY-MM-DD')}/>
                     </Form.Item>
                 </div>
                 <div className="col-12">
