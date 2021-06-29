@@ -41,9 +41,9 @@ export const createNewReport = (id, report, jwt) => {
         data: {
             patientNationalId: parseFloat(id),
             reportDate: parseInt(moment().format("x")),
-            summary: report.summary,
+            medicalHistoryAndClinicalFindings: report.medicalHistoryAndClinicalFindings,
             diagnosis: report.diagnosis,
-            procedure: report.procedure
+            recommendation: report.recommendation
         },
         headers: {
             'Authorization': `Bearer ${jwt}`

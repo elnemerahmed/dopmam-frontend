@@ -309,8 +309,8 @@ const ReportDetails = ({id, jwt, channel, organization, updateReport, setUpdateR
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            <Form.Item label="Summary:">
-                                <TextArea cols="4" disabled value={report.summary}/>
+                            <Form.Item label="Medical History and Clinical Findings:">
+                                <TextArea cols="4" disabled value={report.medicalHistoryAndClinicalFindings}/>
                             </Form.Item>
                         </div>
                         <div className="col-12">
@@ -319,8 +319,8 @@ const ReportDetails = ({id, jwt, channel, organization, updateReport, setUpdateR
                             </Form.Item>
                         </div>
                         <div className="col-12">
-                            <Form.Item label="Procedure:">
-                                <TextArea cols="4" disabled value={report.procedure}/>
+                            <Form.Item label="Recommendation:">
+                                <TextArea cols="4" disabled value={report.recommendation}/>
                             </Form.Item>
                         </div>
                     </div>

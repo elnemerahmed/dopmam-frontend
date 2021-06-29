@@ -18,7 +18,7 @@ const NoContent = () => {
     );
 };
 
-const ReportCard = ({ reportId, channel, summary, history }) => {
+const ReportCard = ({ reportId, channel, medicalHistoryAndClinicalFindings, history }) => {
     return (
         <Card key={reportId} className="w-100 mb-2" onClick={() => { history.push(`/dopmam/reports/${channel}/${reportId}`) }}>
             <div className="row">
@@ -29,9 +29,9 @@ const ReportCard = ({ reportId, channel, summary, history }) => {
             <div className="row">
                 <div className="col">
                     <div>
-                        <strong>Summary: </strong>
+                        <strong>Medical History and Clinical Findings: </strong>
                     </div>
-                    <span>{summary}</span>
+                    <span>{medicalHistoryAndClinicalFindings}</span>
                 </div>
             </div>
         </Card>
@@ -84,7 +84,7 @@ const UserReports = ({jwt, history, user}) => {
         return reports.sort(compare).map((report, index) => {
             return (
                 <div key={index} className="col-12">
-                    <ReportCard history={history} reportId={report.reportId} channel={report.organization} summary={report.summary} />
+                    <ReportCard history={history} reportId={report.reportId} channel={report.organization} medicalHistoryAndClinicalFindings={report.medicalHistoryAndClinicalFindings} />
                 </div>
             );
         });

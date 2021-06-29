@@ -18,7 +18,7 @@ const NoContent = () => {
     );
 };
 
-const ReportCard = ({ reportId, summary, history }) => {
+const ReportCard = ({ reportId, medicalHistoryAndClinicalFindings, history }) => {
     return (
         <Card key={reportId} className="w-100 mb-2" onClick={() => { history.push(`/user/reports/${reportId}`) }}>
             <div className="row">
@@ -29,9 +29,9 @@ const ReportCard = ({ reportId, summary, history }) => {
             <div className="row">
                 <div className="col">
                     <div>
-                        <strong>Summary: </strong>
+                        <strong>Medical History and Clinical Findings: </strong>
                     </div>
-                    <span>{summary}</span>
+                    <span>{medicalHistoryAndClinicalFindings}</span>
                 </div>
             </div>
         </Card>
@@ -74,7 +74,7 @@ const UserReports = ({jwt, history, user}) => {
         return reports.sort(compare).map((report, index) => {
             return (
                 <div key={index} className="col-12">
-                    <ReportCard history={history} reportId={report.reportId} summary={report.summary} />
+                    <ReportCard history={history} reportId={report.reportId} medicalHistoryAndClinicalFindings={report.medicalHistoryAndClinicalFindings} />
                 </div>
             );
         });

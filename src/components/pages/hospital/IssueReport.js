@@ -247,9 +247,9 @@ const Report = ({ jwt, history,  }) => {
                 <div className="row">
                     <div className="col-12">
                         <Form.Item 
-                            label="Summary:"
-                            name="summary"
-                            rules={[{ required: true, message: 'Summary is required!' }]}
+                            label="Medical History and Clinical Findings:"
+                            name="medicalHistoryAndClinicalFindings"
+                            rules={[{ required: true, message: 'Medical History and Clinical Findings are required!' }]}
                         >
                             <TextArea maxLength="500" cols="4" disabled={!validPatient}/>
                         </Form.Item>
@@ -265,9 +265,9 @@ const Report = ({ jwt, history,  }) => {
                     </div>
                     <div className="col-12">
                         <Form.Item 
-                            label="Procedure:"
-                            name="procedure"
-                            rules={[{ required: true, message: 'Procedure is required!' }]}
+                            label="Recommendation:"
+                            name="recommendation"
+                            rules={[{ required: true, message: 'Recommendation is required!' }]}
                         >
                             <TextArea maxLength="500" cols="4" disabled={!validPatient}/>
                         </Form.Item>
