@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Card, Tabs, Result } from 'antd';
 
 import UserLayout from '../../layouts/UserLayout';
-import { getReports } from '../../../axios/hospital';
+import { getReports, getPatient } from '../../../axios/hospital';
 
 const { TabPane } = Tabs;
 
@@ -18,12 +18,33 @@ const NoContent = () => {
     );
 };
 
-const ReportCard = ({ reportId, medicalHistoryAndClinicalFindings, history }) => {
+const ReportCard = ({ report, jwt, history }) => {
+
+    const [patient, setPatient] = useState({});
+
+    useEffect(() => {
+        getPatient(report.patientNationalId, jwt).then(({data}) => {
+            setPatient(data);
+        }).catch(() => {
+        });
+    }, []);
+
+
     return (
-        <Card key={reportId} className="w-100 mb-2" onClick={() => { history.push(`/user/reports/${reportId}`) }}>
+        <Card key={report.reportId} className="w-100 mb-2" onClick={() => { history.push(`/user/reports/${report.reportId}`) }}>
             <div className="row">
                 <div className="col">
-                    <h1>#{reportId}</h1>
+                    <h1>#{report.reportId}</h1>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-sm-6 col-12">
+                    <strong>Patient Id: </strong>
+                    <span>{patient.nationalId}</span>
+                </div>
+                <div className="col-sm-6 col-12">
+                    <strong>Patient Name: </strong>
+                    <span>{ `${patient.firstName ? patient.firstName : 'Loading ...'} ${patient.lastName ? patient.lastName : ''}` }</span> 
                 </div>
             </div>
             <div className="row">
@@ -31,7 +52,7 @@ const ReportCard = ({ reportId, medicalHistoryAndClinicalFindings, history }) =>
                     <div>
                         <strong>Medical History and Clinical Findings: </strong>
                     </div>
-                    <span>{medicalHistoryAndClinicalFindings}</span>
+                    <span>{report.medicalHistoryAndClinicalFindings}</span>
                 </div>
             </div>
         </Card>
@@ -74,7 +95,7 @@ const UserReports = ({jwt, history, user}) => {
         return reports.sort(compare).map((report, index) => {
             return (
                 <div key={index} className="col-12">
-                    <ReportCard history={history} reportId={report.reportId} medicalHistoryAndClinicalFindings={report.medicalHistoryAndClinicalFindings} />
+                    <ReportCard history={history} report={report} jwt={jwt}/>
                 </div>
             );
         });
