@@ -2,13 +2,24 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {Route} from 'react-router-dom';
 import { useHistory } from "react-router-dom";
+import decode from 'jwt-decode';
+import moment from 'moment';
+
+import {deleteUserInfo} from '../../actions/user';
 
 const PrivateRoute = ({ children, jwt, path, component }) => {
     let history = useHistory();
 
-    useEffect(() => {
+    useEffect(() => {   
         if(!jwt) {
-            history.push('/login')
+            deleteUserInfo();
+            history.push('/login');
+        } else {
+            const user = decode(jwt);
+            if(moment().format('X') >= user.eat) {
+                deleteUserInfo();
+                history.push('/login');
+            }
         }
     }, []);
 
@@ -25,4 +36,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps, {deleteUserInfo})(PrivateRoute);

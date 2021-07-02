@@ -43,6 +43,7 @@ ReactDOM.render(
                     <HospitalRoute exact path="/user/reports/:id" component={UserReportDetails} />
                     <DopmamRoute exact path="/dopmam/reports" component={DopmamReports} />
                     <DopmamRoute exact path="/dopmam/reports/:channel/:id" component={DopmamReportDetails} />
+                    <Route path='*' component={Home} />
                 </Switch>
             </Router>
         </PersistGate>

@@ -26,7 +26,7 @@ const ReportCard = ({ report, channel, jwt, history }) => {
             setPatient(data);
         }).catch(() => {
         });
-    }, []);
+    }, [report]);
 
     return (
         <Card key={report.reportId} className="w-100 mb-2" onClick={() => { history.push(`/dopmam/reports/${channel}/${report.reportId}`) }}>
@@ -60,22 +60,22 @@ const ReportCard = ({ report, channel, jwt, history }) => {
 const UserReports = ({jwt, history, user}) => {
     const [reportList, setReportList] = useState([]);
 
-    const clearReportList = () => {
-        setReportList([]);
-    };
-
     useEffect(() => {
-        clearReportList();
+        setReportList([]);
+
         dopmamChannels.forEach((channel) => {
             getReports(jwt, channel).then(({data}) => {
                 data.forEach((obj) => {
                     obj.organization = channel.split('-')[1]
                 });
-                setReportList(...reportList, data);
+                
+                data.forEach((obj) => {
+                    setReportList(reportList.concat(obj))
+                });
             }).catch(() => {
             });
         });
-    }, [jwt]);
+    }, []);
 
     const getAllReports = () => {
         return reportList;
